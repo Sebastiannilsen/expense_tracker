@@ -82,7 +82,7 @@ The Expense Tracker app follows a clean Flutter architecture, separating UI, dat
 - **lib/**
   - **main.dart**: The entry point of the app.
   - **models/**
-    - **expense.dart**: Defines the `Expense` class. 
+    - **expense.dart**: Defines the `Expense` and `ExpenseBucket` classes. 
   - **widgets/**
     - **expenses.dart**: Displays the main expenses screen.
     - **new_expense.dart**: Displays the screen for adding new expenses.
