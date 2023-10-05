@@ -3,12 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:expense_tracker/widgets/chart/chart_bar.dart';
 import 'package:expense_tracker/models/expense.dart';
 
+// List of options for selecting time periods
 final List<String> options = ['ALL', '1 YEAR', '1 MONTH', '1 WEEK', '1 DAY'];
 
+// The currently selected option (default is 'ALL')
 Option selectedOption = Option.all;
 
+// Enum representing time period options
 enum Option { all, year, month, week, day }
 
+// A widget representing the chart
 class Chart extends StatefulWidget {
   final List<Expense> expenses;
 
@@ -21,8 +25,10 @@ class Chart extends StatefulWidget {
 }
 
 class _ChartState extends State<Chart> {
+  // Get the list of expenses from the widget
   List<Expense> get expenses => widget.expenses;
 
+  // Create a list of expense buckets based on category and selected time period
   List<ExpenseBucket> get buckets {
     return [
       ExpenseBucket.forCategoryAndTimeFilter(
@@ -36,6 +42,7 @@ class _ChartState extends State<Chart> {
     ];
   }
 
+  // Calculate the maximum total expense among all buckets
   double get maxTotalExpense {
     double maxTotalExpense = 0;
 
@@ -48,12 +55,15 @@ class _ChartState extends State<Chart> {
     return maxTotalExpense;
   }
 
+  // List to track the selected options
   List<bool> _selections = List.generate(5, (index) => index == 0);
 
   @override
   Widget build(BuildContext context) {
+    // Determine if the app is running in dark mode
     final isDarkMode =
         MediaQuery.of(context).platformBrightness == Brightness.dark;
+
     return Container(
       margin: const EdgeInsets.all(16),
       padding: const EdgeInsets.symmetric(
@@ -79,8 +89,9 @@ class _ChartState extends State<Chart> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                for (final bucket in buckets) // alternative to map()
+                for (final bucket in buckets)
                   ChartBar(
+                    // Calculate the fill of the bar relative to the max total expense
                     fill: bucket.totalExpenses == 0
                         ? 0
                         : bucket.totalExpenses / maxTotalExpense,
@@ -114,7 +125,7 @@ class _ChartState extends State<Chart> {
             isSelected: _selections,
             onPressed: (int index) => {
               setState(() {
-                // set all values to false
+                // Update the selected option and set all button values to false
                 selectedOption = Option.values[index];
                 _selections = List.generate(5, (_) => false);
                 _selections[index] = !_selections[index];
@@ -129,7 +140,6 @@ class _ChartState extends State<Chart> {
                       const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
                   child: Text(
                     option.name, // Use the text from the options list
-                    //style: const TextStyle(fontSize: 10),
                   ),
                 ),
             ],

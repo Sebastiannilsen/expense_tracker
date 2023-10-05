@@ -3,12 +3,16 @@ import "package:flutter/material.dart";
 import "package:uuid/uuid.dart";
 import 'package:intl/intl.dart';
 
+// Define a date formatter
 final formatter = DateFormat.yMd();
 
+// Generate unique IDs for expenses
 const uuid = Uuid();
 
+// Enum representing expense categories
 enum Category { food, travel, leisure, work }
 
+// Icons corresponding to each category
 const categoryIcons = {
   Category.food: Icons.lunch_dining,
   Category.travel: Icons.flight_takeoff,
@@ -16,6 +20,7 @@ const categoryIcons = {
   Category.work: Icons.work,
 };
 
+// Class representing an expense
 class Expense {
   Expense({
     required this.title,
@@ -24,23 +29,26 @@ class Expense {
     required this.category,
   }) : id = uuid.v4();
 
-  final String id;
-  final String title;
-  final double amount;
-  final DateTime date;
-  final Category category;
+  final String id; // Unique ID for the expense
+  final String title; // Title of the expense
+  final double amount; // Amount of money spent
+  final DateTime date; // Date of the expense
+  final Category category; // Category of the expense
 
+  // Formatted date for display
   String get formattedDate {
     return formatter.format(date);
   }
 }
 
+// Class representing a bucket of expenses for a specific category
 class ExpenseBucket {
   const ExpenseBucket({
     required this.category,
     required this.expenses,
   });
 
+  // Factory constructor to create a bucket with filtered expenses
   factory ExpenseBucket.forCategoryAndTimeFilter(
       List<Expense> allExpenses, Category category, Option selectedOption) {
     List<Expense> filteredExpenses =
@@ -48,9 +56,10 @@ class ExpenseBucket {
     return ExpenseBucket(category: category, expenses: filteredExpenses);
   }
 
-  final Category category;
-  final List<Expense> expenses;
+  final Category category; // Category for which expenses are grouped
+  final List<Expense> expenses; // List of expenses in the bucket
 
+  // Calculate the total sum of expenses in the bucket
   double get totalExpenses {
     double sum = 0;
 
@@ -62,6 +71,7 @@ class ExpenseBucket {
   }
 }
 
+// Function to filter expenses based on category and time period
 List<Expense> filterExpenses(
     List<Expense> allExpenses, Category category, Option selectedOption) {
   DateTime currentDate = DateTime.now();
