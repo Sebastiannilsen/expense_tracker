@@ -15,7 +15,6 @@ Expense Tracker is a simple Flutter application that helps you manage and track 
 
 ![Screenshot 1](screenshots/screenshot1.png)
 ![Screenshot 2](screenshots/screenshot2.png)
-![Screenshot 3](screenshots/screenshot3.png)
 
 ## Getting Started
 
@@ -45,9 +44,3 @@ This project uses the following packages and dependencies:
 - Flutter: [https://flutter.dev/](https://flutter.dev/)
 - uuid: [https://pub.dev/packages/uuid](https://pub.dev/packages/uuid)
 - intl: [https://pub.dev/packages/intl](https://pub.dev/packages/intl)
-
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
