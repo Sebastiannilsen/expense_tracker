@@ -23,17 +23,17 @@ To get started with this project, follow these steps:
 
 1. Clone the repository to your local machine:
 
-'git clone https://github.com/your-username/expense-tracker.git'
+`git clone https://github.com/Sebastiannilsen/expense_tracker.git`
 
 2. Open the project in your preferred Flutter development environment (e.g., Android Studio, VS Code).
 
 3. Install the required dependencies by running:
 
-'flutter pub get'
+`flutter pub get`
 
 4. Run the app on an emulator or physical device:
 
-'flutter run'
+`flutter run`
 
 
 5. Start managing your expenses!
